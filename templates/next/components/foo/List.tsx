@@ -40,13 +40,17 @@ export const List: FunctionComponent<Props> = ({ {{{lc}}}s }) => (
             {{#each fields}}
               <td>
                 {{#if isReferences}}
-                  <ReferenceLinks items={ {{{../lc}}}['{{{name}}}'].map((ref: any) => ({ href: getItemPath(ref, '/{{{lowercase reference.title}}}s/[id]'), name: ref })) } />
+                  { {{{../lc}}}['{{{name}}}'] && (
+                    <ReferenceLinks items={ {{{../lc}}}['{{{name}}}'].map((ref: any) => ({ href: getItemPath(ref, '/{{{lowercase reference.title}}}s/[id]'), name: ref })) } />
+                  )}
                 {{else if reference}}
                   <ReferenceLinks items={ { href: getItemPath({{{../lc}}}['{{{name}}}'], '/{{{lowercase reference.title}}}s/[id]'), name: {{{../lc}}}['{{{name}}}'] } } />
                 {{else if isEmbeddeds}}
-                  <ReferenceLinks items={ {{{../lc}}}['{{{name}}}'].map((emb: any) => ({ href: getItemPath(emb['@id'], '/{{{lowercase embedded.title}}}s/[id]'), name: emb['@id'] })) } />
+                  { {{{../lc}}}['{{{name}}}'] && (
+                    <ReferenceLinks items={ {{{../lc}}}['{{{name}}}'].map((emb: any) => ({ href: getItemPath(emb['@id'], '/{{{lowercase embedded.title}}}s/[id]'), name: emb['@id'] })) } />
+                  )}
                 {{else if embedded}}
-                  <ReferenceLinks items={ { href: getItemPath({{{../lc}}}['{{{name}}}']['@id'], '/{{{lowercase embedded.title}}}s/[id]'), name: {{{../lc}}}['{{{name}}}']['@id'] } } />
+                  <ReferenceLinks items={ { href: getItemPath({{{../lc}}}['{{{name}}}']?.['@id'], '/{{{lowercase embedded.title}}}s/[id]'), name: {{{../lc}}}['{{{name}}}']?.['@id'] } } />
                 {{else if (compare type "==" "Date") }}
                   { {{{../lc}}}['{{{name}}}']?.toLocaleString() }
                 {{else}}
