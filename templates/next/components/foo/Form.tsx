@@ -176,7 +176,9 @@ export const Form: FunctionComponent<Props> = ({ {{{lc}}} }) => {
                 <input
                   name="{{name}}"
                   id="{{../lc}}_{{name}}"
-                  {{#if (compare type "==" "date") }}
+                  {{#if (compare type "==" "checkbox") }}
+                  checked={!!(values.{{name}} ?? false)}
+                  {{else if (compare type "==" "date") }}
                   value={values.{{name}} instanceof Date ? values.{{name}}.toISOString().split('T')[0] : values.{{name}} ?? ""}
                   {{else if (compare type "==" "datetime-local") }}
                   value={values.{{name}} instanceof Date ? values.{{name}}.toISOString().slice(0, 16) : values.{{name}} ?? ""}
