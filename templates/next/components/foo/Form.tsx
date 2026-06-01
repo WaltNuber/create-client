@@ -84,8 +84,24 @@ export const Form: FunctionComponent<Props> = ({ {{{lc}}} }) => {
         }}
         onSubmit={(values, { setSubmitting, setStatus, setErrors }) => {
           const isCreation = !values["@id"];
+          const valuesToSave = { ...values };
+          {{#each formFields}}
+            {{#if (compare type "==" "date") }}
+            if (valuesToSave.{{name}} && !(valuesToSave.{{name}} instanceof Date)) {
+              valuesToSave.{{name}} = new Date(valuesToSave.{{name}});
+            }
+            {{else if (compare type "==" "datetime-local") }}
+            if (valuesToSave.{{name}} && !(valuesToSave.{{name}} instanceof Date)) {
+              valuesToSave.{{name}} = new Date(valuesToSave.{{name}});
+            }
+            {{else if (compare type "==" "time") }}
+            if (valuesToSave.{{name}} && !(valuesToSave.{{name}} instanceof Date)) {
+              valuesToSave.{{name}} = new Date(`1970-01-01T${valuesToSave['{{name}}']}`);
+            }
+            {{/if}}
+          {{/each}}
           saveMutation.mutate(
-            { values },
+            { values: valuesToSave },
             {
               onSuccess: () => {
                 setStatus({
@@ -160,12 +176,15 @@ export const Form: FunctionComponent<Props> = ({ {{{lc}}} }) => {
                 <input
                   name="{{name}}"
                   id="{{../lc}}_{{name}}"
-                  {{#compare type "==" "dateTime" }}
-                  value={values.{{name}}?.toLocaleString() ?? ""}
-                  {{/compare}}
-                  {{#compare type "!=" "dateTime" }}
+                  {{#if (compare type "==" "date") }}
+                  value={values.{{name}} instanceof Date ? values.{{name}}.toISOString().split('T')[0] : values.{{name}} ?? ""}
+                  {{else if (compare type "==" "datetime-local") }}
+                  value={values.{{name}} instanceof Date ? values.{{name}}.toISOString().slice(0, 16) : values.{{name}} ?? ""}
+                  {{else if (compare type "==" "time") }}
+                  value={values.{{name}} instanceof Date ? values.{{name}}.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : values.{{name}} ?? ""}
+                  {{else}}
                   value={values.{{name}} ?? ""}
-                  {{/compare}}
+                  {{/if}}
                   type="{{type}}"
                   {{#if step}}step="{{{step}}}"{{/if}}
                   placeholder="{{{description}}}"

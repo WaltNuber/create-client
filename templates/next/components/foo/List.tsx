@@ -51,8 +51,12 @@ export const List: FunctionComponent<Props> = ({ {{{lc}}}s }) => (
                   )}
                 {{else if embedded}}
                   <ReferenceLinks items={ { href: getItemPath({{{../lc}}}['{{{name}}}']?.['@id'], '/{{{lowercase embedded.title}}}s/[id]'), name: {{{../lc}}}['{{{name}}}']?.['@id'] } } />
-                {{else if (compare type "==" "Date") }}
-                  { {{{../lc}}}['{{{name}}}']?.toLocaleString() }
+                {{else if (compare range "==" "http://www.w3.org/2001/XMLSchema#date") }}
+                  { {{{../lc}}}['{{{name}}}'] instanceof Date ? {{{../lc}}}['{{{name}}}'].toLocaleString() : ({{{../lc}}}['{{{name}}}'] ? new Date({{{../lc}}}['{{{name}}}']).toLocaleString() : "") }
+                {{else if (compare range "==" "http://www.w3.org/2001/XMLSchema#dateTime") }}
+                  { {{{../lc}}}['{{{name}}}'] instanceof Date ? {{{../lc}}}['{{{name}}}'].toLocaleString() : ({{{../lc}}}['{{{name}}}'] ? new Date({{{../lc}}}['{{{name}}}']).toLocaleString() : "") }
+                {{else if (compare range "==" "http://www.w3.org/2001/XMLSchema#time") }}
+                  { {{{../lc}}}['{{{name}}}'] instanceof Date ? {{{../lc}}}['{{{name}}}'].toLocaleString() : ({{{../lc}}}['{{{name}}}'] ? new Date({{{../lc}}}['{{{name}}}']).toLocaleString() : "") }
                 {{else}}
                   { {{{../lc}}}['{{{name}}}'] }
                 {{/if}}
