@@ -55,6 +55,7 @@
   "scripts": {
     "build": "babel src -d lib --ignore '*.test.js'",
     "prepublishOnly": "npm run build",
+    "prepare": "npm run build",
     "test": "jest src",
     "lint": "eslint src",
     "fix": "eslint --fix src",
