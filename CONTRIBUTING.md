@@ -27,11 +27,11 @@ To install the source version of Create Client in your project and contribute a 
 ```console
 $ git clone git@github.com:api-platform/create-client.git
 $ cd create-client
-$ npm install
-$ npm run watch
+$ pnpm install
+$ pnpm run watch
 ```
 
-You can now hack in the cloned repository of `create-client`. If you want to test your work, a `lib/index.js` file containing your last changes will be created each time you invoke `npm run build`. You can also use `npm run watch` to make it created each time a change is performed in your code!
+You can now hack in the cloned repository of `create-client`. If you want to test your work, a `lib/index.js` file containing your last changes will be created each time you invoke `pnpm run build`. You can also use `pnpm run watch` to make it created each time a change is performed in your code!
 
 ### Testing your changes
 
@@ -50,7 +50,7 @@ $ docker-compose logs -f pwa
 Before sending a Pull Request, make sure the tests pass correctly:
 
 ```console
-$ npm test
+$ pnpm test
 ```
 
 ### Matching coding standards
@@ -59,7 +59,7 @@ The style of the project is inspired by the [Airbnb JavaScript style guide](http
 But don't worry, you can fix CS issues automatically using [ESLint](https://eslint.org/) tool:
 
 ```console
-$ npm run fix
+$ pnpm run fix
 ```
 
 And then, add fixed file to your commit before push.
@@ -69,7 +69,7 @@ Be sure to add only **your modified files**. If another files are fixed by cs to
 
 When you send a PR, just make sure that:
 
-* You add valid test cases (you can run them using `npm test`).
+* You add valid test cases (you can run them using `pnpm test`).
 * Tests are green.
 * You make a PR on the related documentation in the [api-platform/doc](https://github.com/api-platform/doc) repository.
 * You make the PR on the same branch you based your changes on. If you see commits that you did not make in your PR, you're doing it wrong.
@@ -124,22 +124,22 @@ $ git push --force
 Always test before releasing a new one:
 
 ```console
-$ npm run build
-$ npm test
-$ npm run lint
+$ pnpm run build
+$ pnpm test
+$ pnpm run lint
 ```
 
-To fix linting errors, you can use `npm run fix`.
+To fix linting errors, you can use `pnpm run fix`.
 
 To release a new version:
 
 ```console
-$ npm version # this creates a tag
+$ pnpm version # this creates a tag
 $ git push
 $ git push --tags
 ```
 
-Travis will then publish the version on npm.
+GitHub Actions will then publish the version on npm.
 
 # License and copyright attribution
 

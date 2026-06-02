@@ -14,26 +14,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
     - name: Build Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run build
-    - run: npm test
-    - run: npm run lint
+        cache: 'pnpm'
+    - run: pnpm install
+    - run: pnpm run build
+    - run: pnpm test
+    - run: pnpm run lint
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - run: npm run test-gen
-    - run: npm run test-next-app
-    - run: npm run test-react-app
-    - run: npm run test-vue-app
+    - run: pnpm run test-gen
+    - run: pnpm run test-next-app
+    - run: pnpm run test-react-app
+    - run: pnpm run test-vue-app
     - env:
         NODE_OPTIONS: --openssl-legacy-provider
-      run: npm run test-nuxt-app
-    - run: npm run test-gen-env
-    - run: npm run test-gen-openapi3
-    - run: npm run eslint-check
+      run: pnpm run test-nuxt-app
+    - run: pnpm run test-gen-env
+    - run: pnpm run test-gen-openapi3
+    - run: pnpm run eslint-check
     - uses: actions/upload-artifact@v3
       if: always()
       with:

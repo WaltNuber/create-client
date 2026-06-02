@@ -1,0 +1,4 @@
+allowBuilds:
+  core-js-pure: true
+  highlight.js: true
+  nice-napi: true
