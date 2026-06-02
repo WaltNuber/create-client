@@ -7,7 +7,7 @@ import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { Form } from "../../../components/{{{lc}}}/Form";
 import { PagedCollection } from "../../../types/collection";
 import { {{{ucf}}} } from "../../../types/{{{ucf}}}";
-import { fetchApi, FetchResponse, getItemPaths } from "../../../utils/dataAccess";
+import { fetchApi, FetchResponse, getItemPaths } from "../../../../utils/dataAccess";
 
 const get{{{ucf}}} = async (id: string|string[]|undefined) => id ? await fetchApi<{{{ucf}}}>(`/{{{name}}}/${id}`) : Promise.resolve(undefined);
 

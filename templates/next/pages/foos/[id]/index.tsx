@@ -7,8 +7,8 @@ import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { Show } from "../../../components/{{{lc}}}/Show";
 import { PagedCollection } from "../../../types/collection";
 import { {{{ucf}}} } from "../../../types/{{{ucf}}}";
-import { fetchApi, FetchResponse, getItemPaths } from "../../../utils/dataAccess";
-import { useMercure } from "../../../utils/mercure";
+import { fetchApi, FetchResponse, getItemPaths } from "../../../../utils/dataAccess";
+import { useMercure } from "../../../../utils/mercure";
 
 const get{{{ucf}}} = async (id: string|string[]|undefined) => id ? await fetchApi<{{{ucf}}}>(`/{{{name}}}/${id}`) : Promise.resolve(undefined);
 

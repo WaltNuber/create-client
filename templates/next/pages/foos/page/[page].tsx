@@ -4,7 +4,7 @@ import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { PageList, get{{{ucf}}}s, get{{{ucf}}}sPath } from "../../../components/{{{lc}}}/PageList";
 import { PagedCollection } from "../../../types/collection";
 import { {{{ucf}}} } from "../../../types/{{{ucf}}}";
-import { fetchApi, getCollectionPaths } from "../../../utils/dataAccess";
+import { fetchApi, getCollectionPaths } from "../../../../utils/dataAccess";
 
 export const getStaticProps: GetStaticProps = async ({ params: { page } = {} }) => {
   const queryClient = new QueryClient();
