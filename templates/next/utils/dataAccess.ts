@@ -34,12 +34,12 @@ const extractHubURL = (response: Response): null | URL => {
 
 export const fetchApi = async <TData>(id: string, init: RequestInit = {}): Promise<FetchResponse<TData>|undefined> => {
   if (typeof init.headers === "undefined") init.headers = {};
-  if (!init.headers.hasOwnProperty("Accept"))
+  if (!Object.prototype.hasOwnProperty.call(init.headers, "Accept"))
     init.headers = { ...init.headers, Accept: MIME_TYPE };
   if (
     init.body !== undefined &&
     !(init.body instanceof FormData) &&
-    !init.headers?.hasOwnProperty("Content-Type")
+    !Object.prototype.hasOwnProperty.call(init.headers, "Content-Type")
   )
     init.headers = { ...init.headers, "Content-Type": MIME_TYPE };
 
