@@ -27,11 +27,11 @@ To install the source version of Create Client in your project and contribute a 
 ```console
 $ git clone git@github.com:api-platform/create-client.git
 $ cd create-client
-$ yarn install
-$ yarn watch
+$ npm install
+$ npm run watch
 ```
 
-You can now hack in the cloned repository of `create-client`. If you want to test your work, a `lib/index.js` file containing your last changes will be created each time you invoke `yarn build`. You can also use `yarn watch` to make it created each time a change is performed in your code!
+You can now hack in the cloned repository of `create-client`. If you want to test your work, a `lib/index.js` file containing your last changes will be created each time you invoke `npm run build`. You can also use `npm run watch` to make it created each time a change is performed in your code!
 
 ### Testing your changes
 
@@ -50,7 +50,7 @@ $ docker-compose logs -f pwa
 Before sending a Pull Request, make sure the tests pass correctly:
 
 ```console
-$ yarn test
+$ npm test
 ```
 
 ### Matching coding standards
@@ -59,7 +59,7 @@ The style of the project is inspired by the [Airbnb JavaScript style guide](http
 But don't worry, you can fix CS issues automatically using [ESLint](https://eslint.org/) tool:
 
 ```console
-$ yarn fix
+$ npm run fix
 ```
 
 And then, add fixed file to your commit before push.
@@ -69,7 +69,7 @@ Be sure to add only **your modified files**. If another files are fixed by cs to
 
 When you send a PR, just make sure that:
 
-* You add valid test cases (you can run them using `yarn test`).
+* You add valid test cases (you can run them using `npm test`).
 * Tests are green.
 * You make a PR on the related documentation in the [api-platform/doc](https://github.com/api-platform/doc) repository.
 * You make the PR on the same branch you based your changes on. If you see commits that you did not make in your PR, you're doing it wrong.
@@ -124,17 +124,17 @@ $ git push --force
 Always test before releasing a new one:
 
 ```console
-$ yarn build
-$ yarn test
-$ yarn lint
+$ npm run build
+$ npm test
+$ npm run lint
 ```
 
-To fix linting errors, you can use `yarn fix`.
+To fix linting errors, you can use `npm run fix`.
 
 To release a new version:
 
 ```console
-$ yarn version # this creates a tag
+$ npm version # this creates a tag
 $ git push
 $ git push --tags
 ```

@@ -18,22 +18,22 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn install
-    - run: yarn build
-    - run: yarn test
-    - run: yarn lint
+    - run: npm install
+    - run: npm run build
+    - run: npm test
+    - run: npm run lint
     - name: Install Playwright Browsers
-      run: yarn playwright install --with-deps
-    - run: yarn test-gen
-    - run: yarn test-next-app
-    - run: yarn test-react-app
-    - run: yarn test-vue-app
+      run: npx playwright install --with-deps
+    - run: npm run test-gen
+    - run: npm run test-next-app
+    - run: npm run test-react-app
+    - run: npm run test-vue-app
     - env:
         NODE_OPTIONS: --openssl-legacy-provider
-      run: yarn test-nuxt-app
-    - run: yarn test-gen-env
-    - run: yarn test-gen-openapi3
-    - run: yarn check
+      run: npm run test-nuxt-app
+    - run: npm run test-gen-env
+    - run: npm run test-gen-openapi3
+    - run: npm run eslint-check
     - uses: actions/upload-artifact@v3
       if: always()
       with:
