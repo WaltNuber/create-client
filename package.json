@@ -53,7 +53,7 @@
     "sprintf-js": "^1.1.0"
   },
   "scripts": {
-    "build": "babel src -d lib --ignore '*.test.js'",
+    "build": "babel src -d lib --ignore '*.test.js' && chmod +x lib/index.js",
     "prepublishOnly": "pnpm run build",
     "prepare": "pnpm run build",
     "test": "jest src",
